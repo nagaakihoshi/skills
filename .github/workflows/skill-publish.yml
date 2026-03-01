@@ -1,0 +1,49 @@
+name: Publish Tile
+
+permissions:
+  id-token: write # Required for OIDC token
+  contents: read  # Required to checkout the repository
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  detect:
+    name: Detect changed skills
+    runs-on: ubuntu-latest
+    outputs:
+      skills: ${{ steps.detect.outputs.skills }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed skill directories
+        id: detect
+        run: |
+          changed=$(git diff --name-only HEAD~1...HEAD | grep '^skills/' | cut -d/ -f2 | sort -u)
+          if [ -z "$changed" ]; then
+            echo "skills=[]" >> $GITHUB_OUTPUT
+          else
+            json=$(echo "$changed" | jq -R . | jq -sc .)
+            echo "skills=$json" >> $GITHUB_OUTPUT
+          fi
+
+  publish:
+    name: Publish (${{ matrix.skill }})
+    needs: detect
+    if: needs.detect.outputs.skills != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        skill: ${{ fromJson(needs.detect.outputs.skills) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: tesslio/publish@main
+        with:
+          token: ${{ secrets.TESSL_API_TOKEN }}
+          path: skills/${{ matrix.skill }}
+          # review: 'true'         # Enable skill review quality gate (default: true)
+          # review-threshold: '50' # Minimum score 0-100 to pass (default: 50)

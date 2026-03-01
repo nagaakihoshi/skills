@@ -1,0 +1,44 @@
+name: Skill CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  detect:
+    name: Detect changed skills
+    runs-on: ubuntu-latest
+    outputs:
+      skills: ${{ steps.detect.outputs.skills }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed skill directories
+        id: detect
+        run: |
+          changed=$(git diff --name-only origin/main...HEAD | grep '^skills/' | cut -d/ -f2 | sort -u)
+          if [ -z "$changed" ]; then
+            echo "skills=[]" >> $GITHUB_OUTPUT
+          else
+            json=$(echo "$changed" | jq -R . | jq -sc .)
+            echo "skills=$json" >> $GITHUB_OUTPUT
+          fi
+
+  lint:
+    name: Lint (${{ matrix.skill }})
+    needs: detect
+    if: needs.detect.outputs.skills != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        skill: ${{ fromJson(needs.detect.outputs.skills) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Tessl
+        run: curl -fsSL https://get.tessl.io | sh
+
+      - name: Lint
+        run: tessl skill lint skills/${{ matrix.skill }}
