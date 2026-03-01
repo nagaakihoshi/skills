@@ -1,5 +1,5 @@
 ---
-name: tessl-skill-dev
+name: developing-tessl-skills
 description: Runs the complete local development lifecycle for a Tessl skill by optimizing SKILL.md content using `tessl skill review --optimize`, incrementing the version in tile.json following semantic versioning, linting with `tessl skill lint`, and staging changes for a pull request. Use when preparing a Tessl skill for pull request or publication, when a SKILL.md or tile.json needs to be reviewed, versioned, and validated before committing, or when running the full Tessl skill development workflow locally.
 ---
 

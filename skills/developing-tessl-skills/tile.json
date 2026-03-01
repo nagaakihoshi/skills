@@ -1,10 +1,10 @@
 {
-  "name": "nagaakihoshi/tessl-skill-dev",
+  "name": "nagaakihoshi/developing-tessl-skills",
   "version": "0.1.0",
   "summary": "Guides the local Tessl skill development lifecycle before opening a pull request",
   "private": true,
   "skills": {
-    "tessl-skill-dev": {
+    "developing-tessl-skills": {
       "path": "SKILL.md"
     }
   }
