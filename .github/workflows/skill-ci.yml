@@ -43,6 +43,11 @@ jobs:
       - name: Lint
         run: tessl skill lint skills/${{ matrix.skill }}
 
+      - name: Check auth
+        run: tessl whoami
+        env:
+          TESSL_API_TOKEN: ${{ secrets.TESSL_API_TOKEN }}
+
       - name: Review & Optimize
         run: tessl skill review --optimize --yes skills/${{ matrix.skill }}
         env:
