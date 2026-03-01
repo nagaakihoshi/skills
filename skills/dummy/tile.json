@@ -1,0 +1,11 @@
+{
+  "name": "default/skills",
+  "version": "0.1.0",
+  "summary": "Dummy",
+  "private": true,
+  "skills": {
+    "dummy": {
+      "path": "SKILL.md"
+    }
+  }
+}
