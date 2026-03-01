@@ -1,0 +1,16 @@
+{
+  "criteria": [
+    {
+      "description": "Runs tessl skill review --optimize on the skill path",
+      "points": 40
+    },
+    {
+      "description": "Identifies this as a minor change (new capability, backward-compatible) and bumps to 1.1.0",
+      "points": 40
+    },
+    {
+      "description": "Runs tessl skill lint to validate",
+      "points": 20
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+Semantic version selection: correctly identifies patch vs minor vs major change and increments tile.json accordingly.

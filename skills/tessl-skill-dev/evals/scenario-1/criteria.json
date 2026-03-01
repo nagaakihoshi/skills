@@ -1,0 +1,16 @@
+{
+  "criteria": [
+    {
+      "description": "Runs tessl skill review --optimize on the skill path",
+      "points": 40
+    },
+    {
+      "description": "Increments the version in tile.json (e.g., 0.1.0 → 0.1.1 or higher)",
+      "points": 40
+    },
+    {
+      "description": "Runs tessl skill lint to validate after changes",
+      "points": 20
+    }
+  ]
+}

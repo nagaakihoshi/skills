@@ -1,0 +1,12 @@
+{
+  "criteria": [
+    {
+      "description": "Identifies this as a patch change and sets version to 0.2.2",
+      "points": 60
+    },
+    {
+      "description": "Updates the version field in tile.json to 0.2.2",
+      "points": 40
+    }
+  ]
+}

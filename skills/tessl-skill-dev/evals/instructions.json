@@ -1,0 +1,3 @@
+{
+  "instructions": "Evaluate whether the agent correctly follows the Tessl skill development lifecycle. The agent should run tessl skill review --optimize, increment the version in tile.json following semver, and run tessl skill lint before committing. All three steps are required unless the task explicitly asks for only one of them."
+}
