@@ -19,7 +19,7 @@ jobs:
         id: detect
         run: |
           changed=$(git diff --name-only origin/main...HEAD | grep '^skills/' | cut -d/ -f2 | sort -u)
-          existing=$(echo "$changed" | while read -r s; do [ -d "skills/$s" ] && echo "$s"; done)
+          existing=$(echo "$changed" | while read -r s; do if [ -d "skills/$s" ]; then echo "$s"; fi; done)
           if [ -z "$existing" ]; then
             echo "skills=[]" >> $GITHUB_OUTPUT
           else
