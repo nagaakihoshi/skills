@@ -45,20 +45,20 @@ skills/<名前>/
 ### 3. ローカルでレビュー・最適化
 
 ```bash
-tessl skill review --optimize
+TESSL_API_TOKEN=<token> tessl skill review --optimize skills/<名前>
 ```
+
+CIではCLIの認証ができないため、review・optimize はローカルでのみ実行する。
 
 ### 4. PR を作成
 
 PRを作成・更新すると GitHub Actions が自動で実行：
 
 - `tessl skill lint` — フォーマット・構文チェック
-- `tessl skill review --optimize --yes` — 品質レビューと自動修正
-- `tessl eval run` — エージェントの精度検証
 
 ### 5. マージ → 自動公開
 
-`main` へのマージで GitHub Actions が `tessl skill publish` を実行し、Tessl Registry に公開。
+`main` へのマージで GitHub Actions が `tesslio/publish@main` を実行し、Tessl Registry に公開。
 
 ### GitHub Secrets
 

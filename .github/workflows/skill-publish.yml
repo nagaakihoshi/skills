@@ -1,8 +1,13 @@
-name: Skill CI
+name: Publish Tile
+
+permissions:
+  id-token: write # Required for OIDC token
+  contents: read  # Required to checkout the repository
 
 on:
-  pull_request:
-    branches: [main]
+  push:
+    branches:
+      - main
 
 jobs:
   detect:
@@ -18,7 +23,7 @@ jobs:
       - name: Detect changed skill directories
         id: detect
         run: |
-          changed=$(git diff --name-only origin/main...HEAD | grep '^skills/' | cut -d/ -f2 | sort -u)
+          changed=$(git diff --name-only HEAD~1...HEAD | grep '^skills/' | cut -d/ -f2 | sort -u)
           if [ -z "$changed" ]; then
             echo "skills=[]" >> $GITHUB_OUTPUT
           else
@@ -26,8 +31,8 @@ jobs:
             echo "skills=$json" >> $GITHUB_OUTPUT
           fi
 
-  lint:
-    name: Lint (${{ matrix.skill }})
+  publish:
+    name: Publish (${{ matrix.skill }})
     needs: detect
     if: needs.detect.outputs.skills != '[]'
     runs-on: ubuntu-latest
@@ -36,9 +41,9 @@ jobs:
         skill: ${{ fromJson(needs.detect.outputs.skills) }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Install Tessl
-        run: curl -fsSL https://get.tessl.io | sh
-
-      - name: Lint
-        run: tessl skill lint skills/${{ matrix.skill }}
+      - uses: tesslio/publish@main
+        with:
+          token: ${{ secrets.TESSL_API_TOKEN }}
+          path: skills/${{ matrix.skill }}
+          # review: 'true'         # Enable skill review quality gate (default: true)
+          # review-threshold: '50' # Minimum score 0-100 to pass (default: 50)
