@@ -1,0 +1,115 @@
+---
+description: Tessl skill development rules for this repository. Applies to all skill authoring, tile.json editing, and SKILL.md writing tasks.
+globs: skills/**/*.md,skills/**/tile.json
+alwaysApply: true
+---
+
+## Repository overview
+
+This repository contains agent skills for AI agents, managed with [Tessl](https://tessl.io).
+
+## Directory structure
+
+```
+skills/<name>/
+├── tile.json   # Skill metadata and version
+└── SKILL.md    # Agent instructions
+```
+
+## Creating a skill
+
+Create manually (do NOT use `tessl skill new` — it generates a broken nested structure):
+
+```json
+// skills/<name>/tile.json
+{
+  "name": "nagaakihoshi/<name>",
+  "version": "0.1.0",
+  "summary": "<description>",
+  "private": true,
+  "skills": {
+    "<name>": {
+      "path": "SKILL.md"
+    }
+  }
+}
+```
+
+Naming: use gerund form — `developing-tessl-skills`, not `tessl-skill-dev`.
+
+## Preparing a skill for PR
+
+Run in order:
+
+1. `tessl skill review --optimize skills/<name>` — aim for 70%+
+2. Bump `version` in `tile.json` (semver)
+3. `tessl skill lint skills/<name>` — must pass
+4. Stage `SKILL.md` and `tile.json`
+
+Note: `tessl skill review` requires `tessl login`. It does not work in CI.
+
+## SKILL.md frontmatter rules
+
+```yaml
+---
+name: gerund-form-name          # lowercase, hyphens, max 64 chars
+description: Third-person sentence describing what it does AND when to use it. Max 1024 chars.
+---
+```
+
+Good description example:
+```
+Runs the complete local development lifecycle for a Tessl skill. Use when preparing a skill for pull request or publication.
+```
+
+Bad (avoid):
+```
+Helps you prepare Tessl skills for publishing.   # first person, no trigger
+```
+
+## SKILL.md content rules
+
+- Keep body under 500 lines
+- Only add context the AI doesn't already know
+- Use consistent terminology (pick one term, stick to it)
+- Forward slashes for all file paths, never backslashes
+- Avoid time-sensitive phrasing
+
+### Freedom level by task risk
+
+| Task risk | Style |
+|---|---|
+| High (destructive) | Exact commands, no deviation |
+| Medium | Template with parameters |
+| Low | High-level steps only |
+
+### Progressive disclosure
+
+Link to detail files rather than packing everything into SKILL.md. Keep references 1 level deep:
+
+```
+skills/<name>/
+├── SKILL.md       # Overview + links
+├── reference.md   # Detail (loaded on demand)
+└── scripts/
+    └── helper.py  # Executed, not loaded
+```
+
+For reference files over 100 lines, add a table of contents.
+
+### Multi-step workflows
+
+Use numbered steps with a copyable checklist:
+
+```markdown
+Copy this checklist to track progress:
+- [ ] Step 1: ...
+- [ ] Step 2: ...
+```
+
+Build feedback loops: run validator → fix errors → repeat until passing.
+
+## CI behavior
+
+- **PR:** `tessl skill lint` runs on changed skills only
+- **Merge to main:** publishes to the Tessl Registry via `tesslio/publish@main`
