@@ -22,7 +22,7 @@ tessl login
 
 > **Note:** `tessl skill new` has a bug where it generates a nested structure instead of the skill-first structure documented at [docs.tessl.io](https://docs.tessl.io/create/creating-skills#understanding-the-tessl-package-structure). Create skills manually until this is fixed.
 
-```
+```text
 skills/<name>/
 ├── tile.json
 └── SKILL.md
