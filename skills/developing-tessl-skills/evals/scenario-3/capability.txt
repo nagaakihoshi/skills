@@ -1,1 +1,0 @@
-Combined lifecycle: optimize skill and select correct minor version bump for new backward-compatible capabilities.

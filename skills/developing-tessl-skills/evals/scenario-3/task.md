@@ -1,1 +1,0 @@
-I added a completely new set of steps to `skills/my-skill/SKILL.md` that changes how the agent handles the workflow. The current version is `1.0.3`. Please optimize the skill and bump the version appropriately.

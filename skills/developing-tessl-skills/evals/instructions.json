@@ -1,3 +1,58 @@
 {
-  "instructions": "Evaluate whether the agent correctly follows the Tessl skill development lifecycle. The agent should run tessl skill review --optimize, increment the version in tile.json following semver, and run tessl skill lint before committing. All three steps are required unless the task explicitly asks for only one of them."
+  "instructions": [
+    {
+      "instruction": "Run `tessl skill review --optimize <skill-path>` to optimize the skill before committing",
+      "original_snippets": "Run the review with optimization to improve the skill's quality score...Iterates up to 3 times, applying best-practice improvements automatically.",
+      "relevant_when": "When preparing any Tessl skill for a pull request or publication",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Aim for a review score of 70% or higher; re-run with --max-iterations 10 if still below threshold",
+      "original_snippets": "Aim for a score of 70% or higher. If the score is still below threshold, re-run with `--max-iterations 10`.",
+      "relevant_when": "When the initial optimize run does not reach the 70% threshold",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Increment the version in tile.json following semantic versioning before committing",
+      "original_snippets": "Open `skills/<name>/tile.json` and increment `version` following semantic versioning",
+      "relevant_when": "Any time a skill is being prepared for a new publish",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Use patch bump (x.y.Z) for bug fixes or minor wording improvements",
+      "original_snippets": "Bug fix or minor wording improvement | `0.1.0` → `0.1.1`",
+      "relevant_when": "When changes are small fixes or wording tweaks",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Use minor bump (x.Y.0) for new capabilities that are backward-compatible",
+      "original_snippets": "New capability, backward-compatible | `0.1.0` → `0.2.0`",
+      "relevant_when": "When new steps or features are added to the skill",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Use major bump (X.0.0) for breaking changes to skill behavior",
+      "original_snippets": "Breaking change to skill behavior | `0.1.0` → `1.0.0`",
+      "relevant_when": "When the skill workflow changes in a way incompatible with previous usage",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Run `tessl skill lint <skill-path>` to validate after making changes",
+      "original_snippets": "Confirm the output shows the tile as valid before committing.",
+      "relevant_when": "After optimizing and bumping the version, before committing",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "If lint fails, fix the issues and re-run lint until it passes before proceeding",
+      "original_snippets": "If lint fails: review the reported errors, fix the issues in `SKILL.md` or `tile.json`, then re-run `tessl skill lint` until it passes before proceeding.",
+      "relevant_when": "When tessl skill lint reports errors",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Stage both SKILL.md and tile.json when committing",
+      "original_snippets": "Stage all changes to `SKILL.md` and `tile.json`, commit, and open a pull request against `main`.",
+      "relevant_when": "When creating the commit to open a PR",
+      "why_given": "reminder"
+    }
+  ]
 }
