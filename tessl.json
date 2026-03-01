@@ -1,0 +1,8 @@
+{
+  "name": "skills",
+  "dependencies": {
+    "nagaakihoshi/developing-tessl-skills": {
+      "version": "0.1.0"
+    }
+  }
+}
