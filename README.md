@@ -26,7 +26,7 @@ skills/<名前>/
 
 ```json
 {
-  "name": "<workspace>/<名前>",
+  "name": "nagaakihoshi/<名前>",
   "version": "0.1.0",
   "summary": "<スキルの概要>",
   "private": true,
