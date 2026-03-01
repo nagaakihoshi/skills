@@ -1,6 +1,6 @@
 # skills
 
-Agent skills for Tessl.
+A collection of agent skills managed with Tessl.
 
 ## Setup
 
