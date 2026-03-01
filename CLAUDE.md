@@ -8,7 +8,7 @@ This repository contains agent skills — custom tools and capabilities for AI a
 
 ## Repository Structure
 
-```
+```text
 skills/<name>/
 ├── tile.json   # Skill metadata and version
 └── SKILL.md    # Agent instructions
@@ -89,7 +89,7 @@ Match the level of specificity to the risk of the task:
 
 Reference additional detail in separate files rather than packing everything into SKILL.md. Keep references **1 level deep** — all linked files should be referenced directly from SKILL.md.
 
-```
+```text
 skills/<name>/
 ├── SKILL.md          # Overview + links (loaded on trigger)
 ├── reference.md      # Detail (loaded on demand)
