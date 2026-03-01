@@ -1,0 +1,46 @@
+{
+  "context": "Tests whether the agent correctly uses tessl skill lint to validate a skill, identifies an invalid version string in tile.json, fixes the issue, and re-runs lint until the skill is clean. Graded by inspecting tile.json and process.md.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Lint command run",
+      "description": "process.md mentions running `tessl skill lint` on the skill path",
+      "max_score": 12
+    },
+    {
+      "name": "Initial error captured",
+      "description": "process.md documents an error or failure from the initial lint run",
+      "max_score": 12
+    },
+    {
+      "name": "Version fixed",
+      "description": "skills/webhook-sender/tile.json version is now a valid semver string (x.y.z), not '0.1'",
+      "max_score": 20
+    },
+    {
+      "name": "Semver format correct",
+      "description": "The corrected version in tile.json has exactly three dot-separated integer components",
+      "max_score": 8
+    },
+    {
+      "name": "Lint re-run after fix",
+      "description": "process.md mentions running lint a second time after applying the fix",
+      "max_score": 15
+    },
+    {
+      "name": "Lint passes",
+      "description": "process.md indicates the tile is valid after the fix (e.g. contains 'is valid' or 'passed')",
+      "max_score": 18
+    },
+    {
+      "name": "Both files noted",
+      "description": "process.md mentions both SKILL.md and tile.json as files to stage or commit",
+      "max_score": 8
+    },
+    {
+      "name": "Fix described",
+      "description": "process.md describes what was changed to resolve the lint error",
+      "max_score": 7
+    }
+  ]
+}

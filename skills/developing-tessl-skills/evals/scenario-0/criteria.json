@@ -1,0 +1,56 @@
+{
+  "context": "Tests the full local development lifecycle: optimize, version bump, and lint. The agent has a minimal skill draft and must prepare it for a PR by running the standard Tessl workflow. Graded by inspecting tile.json, SKILL.md, and the process log.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Optimize command run",
+      "description": "process.md mentions running `tessl skill review --optimize` on the skill path",
+      "max_score": 12
+    },
+    {
+      "name": "SKILL.md improved",
+      "description": "skills/db-query/SKILL.md body is longer and more detailed than the original one-line content",
+      "max_score": 10
+    },
+    {
+      "name": "Description improved",
+      "description": "The `description` field in SKILL.md frontmatter is longer and more specific than 'Query database.'",
+      "max_score": 10
+    },
+    {
+      "name": "Score reported",
+      "description": "process.md includes a review score (e.g. 'Score: XX%') from the optimize run",
+      "max_score": 8
+    },
+    {
+      "name": "Score threshold met",
+      "description": "The score reported in process.md is 70 or higher",
+      "max_score": 10
+    },
+    {
+      "name": "Version incremented",
+      "description": "skills/db-query/tile.json version is higher than 0.1.0",
+      "max_score": 12
+    },
+    {
+      "name": "Semver format preserved",
+      "description": "skills/db-query/tile.json version follows semver format (x.y.z)",
+      "max_score": 8
+    },
+    {
+      "name": "Lint command run",
+      "description": "process.md mentions running `tessl skill lint` on the skill path",
+      "max_score": 12
+    },
+    {
+      "name": "Lint passed",
+      "description": "process.md indicates the tile is valid (e.g. 'is valid' or 'Tile ... is valid')",
+      "max_score": 10
+    },
+    {
+      "name": "Both files noted for commit",
+      "description": "process.md mentions both SKILL.md and tile.json as files to stage/commit",
+      "max_score": 8
+    }
+  ]
+}

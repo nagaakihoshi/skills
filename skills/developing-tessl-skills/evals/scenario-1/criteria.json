@@ -1,0 +1,56 @@
+{
+  "context": "Tests whether the agent correctly identifies and applies the appropriate semantic version bump type when a skill gains new backward-compatible capabilities. The agent must update tile.json and document their reasoning. Graded by inspecting tile.json and process.md.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Version incremented",
+      "description": "skills/email-notifier/tile.json version is different from 0.1.0",
+      "max_score": 12
+    },
+    {
+      "name": "Semver format preserved",
+      "description": "The new version in tile.json follows x.y.z format (three dot-separated integers)",
+      "max_score": 8
+    },
+    {
+      "name": "Minor bump applied",
+      "description": "The new version is 0.2.0 (minor component incremented, patch reset to 0, major unchanged)",
+      "max_score": 20
+    },
+    {
+      "name": "Patch bump not used",
+      "description": "The new version is NOT 0.1.1 (patch bump would understate the scope of change)",
+      "max_score": 10
+    },
+    {
+      "name": "Major bump not used",
+      "description": "The new version is NOT 1.0.0 (major bump would overstate a backward-compatible change)",
+      "max_score": 5
+    },
+    {
+      "name": "Bump type explained",
+      "description": "process.md states which bump type was chosen (e.g. 'minor bump' or 'minor version')",
+      "max_score": 12
+    },
+    {
+      "name": "New capability cited",
+      "description": "process.md mentions that the change adds new functionality or capability as the reason for the bump",
+      "max_score": 12
+    },
+    {
+      "name": "Backward compatibility noted",
+      "description": "process.md notes that the change is backward-compatible (existing workflows are unaffected)",
+      "max_score": 10
+    },
+    {
+      "name": "Reasoning present",
+      "description": "process.md includes a sentence or more explaining the rationale for the version choice (not just stating the new version)",
+      "max_score": 6
+    },
+    {
+      "name": "Both files noted",
+      "description": "process.md mentions both SKILL.md and tile.json as files to stage or commit",
+      "max_score": 5
+    }
+  ]
+}
