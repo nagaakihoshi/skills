@@ -4,66 +4,72 @@ Agent skills for Tessl.
 
 ## Setup
 
-### Tessl CLI のインストール
+### Install Tessl CLI
 
 ```bash
 curl -fsSL https://get.tessl.io | sh
 ```
 
+### Login
+
+```bash
+tessl login
+```
+
 ## Development Cycle
 
-### 1. 新しいSkillを作成
+### 1. Create a new skill
 
-`tessl skill new` のバグ（skill-first構造が生成されない）が修正されるまでは手動で作成する。
+> **Note:** `tessl skill new` has a bug where it generates a nested structure instead of the skill-first structure documented at [docs.tessl.io](https://docs.tessl.io/create/creating-skills#understanding-the-tessl-package-structure). Create skills manually until this is fixed.
 
 ```
-skills/<名前>/
+skills/<name>/
 ├── tile.json
 └── SKILL.md
 ```
 
-**tile.json のテンプレート：**
+**tile.json template:**
 
 ```json
 {
-  "name": "nagaakihoshi/<名前>",
+  "name": "nagaakihoshi/<name>",
   "version": "0.1.0",
-  "summary": "<スキルの概要>",
+  "summary": "<description>",
   "private": true,
   "skills": {
-    "<名前>": {
+    "<name>": {
       "path": "SKILL.md"
     }
   }
 }
 ```
 
-### 2. SKILL.md に手順を記述
+### 2. Write SKILL.md
 
-`skills/<名前>/SKILL.md` にSkillの手順・説明を書く。
+Add agent instructions to `skills/<name>/SKILL.md`.
 
-### 3. ローカルでレビュー・最適化
+### 3. Review and optimize locally
 
 ```bash
-TESSL_API_TOKEN=<token> tessl skill review --optimize skills/<名前>
+tessl skill review --optimize skills/<name>
 ```
 
-CIではCLIの認証ができないため、review・optimize はローカルでのみ実行する。
+> **Note:** CLI authentication is not supported in CI. Review and optimize must be done locally before opening a PR.
 
-### 4. PR を作成
+### 4. Open a PR
 
-PRを作成・更新すると GitHub Actions が自動で実行：
+GitHub Actions runs automatically on PR create/update:
 
-- `tessl skill lint` — フォーマット・構文チェック
+- `tessl skill lint` — validates skill structure
 
-### 5. マージ → 自動公開
+### 5. Merge → publish
 
-`main` へのマージで GitHub Actions が `tesslio/publish@main` を実行し、Tessl Registry に公開。
+On merge to `main`, GitHub Actions publishes to the Tessl Registry via `tesslio/publish@main`.
 
-### GitHub Secrets
+## GitHub Secrets
 
-GitHub リポジトリの Settings > Secrets に以下を追加：
+Add the following secret in GitHub repository Settings > Secrets and variables > Actions:
 
-| Secret | 説明 |
-|--------|------|
-| `TESSL_API_TOKEN` | Tessl の認証トークン（[アカウント設定](https://tessl.io)で生成） |
+| Secret | Description |
+|--------|-------------|
+| `TESSL_API_TOKEN` | Tessl API token (generate at [tessl.io](https://tessl.io) account settings) |
