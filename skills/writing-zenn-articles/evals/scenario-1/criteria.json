@@ -1,0 +1,51 @@
+{
+  "context": "Tests whether the agent identifies and corrects invalid front matter: slug too short, too many topics, and empty emoji. The article file must be renamed to match the corrected slug. Graded by inspecting the renamed article file and notes.md.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Old file removed",
+      "description": "articles/nextjs.md no longer exists (the file was renamed to a valid slug)",
+      "max_score": 8
+    },
+    {
+      "name": "New file created",
+      "description": "A new file exists under articles/ with a .md extension and a different name than nextjs.md",
+      "max_score": 10
+    },
+    {
+      "name": "Slug is valid length",
+      "description": "The new filename (slug) is at least 12 characters long",
+      "max_score": 18
+    },
+    {
+      "name": "Slug format valid",
+      "description": "The new slug uses only lowercase alphanumeric characters, hyphens, and underscores",
+      "max_score": 8
+    },
+    {
+      "name": "Topics reduced",
+      "description": "Front matter topics array has 5 or fewer items",
+      "max_score": 18
+    },
+    {
+      "name": "Emoji set",
+      "description": "Front matter emoji is a non-empty string containing at least one emoji character",
+      "max_score": 12
+    },
+    {
+      "name": "Content preserved",
+      "description": "The article title, headings, and body content are preserved in the renamed file",
+      "max_score": 8
+    },
+    {
+      "name": "notes.md created",
+      "description": "A notes.md file exists at the root of the workspace",
+      "max_score": 5
+    },
+    {
+      "name": "Fixes documented",
+      "description": "notes.md describes each of the three issues found and the fix applied for each",
+      "max_score": 13
+    }
+  ]
+}

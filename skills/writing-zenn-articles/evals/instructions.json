@@ -1,0 +1,58 @@
+{
+  "instructions": [
+    {
+      "instruction": "Use `npx zenn new:article` to create a new article; add `--slug <name>` to specify the slug explicitly",
+      "original_snippets": "npx zenn new:article...To specify the slug: npx zenn new:article --slug my-article-slug",
+      "relevant_when": "When creating a new Zenn article from scratch",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Slug must be 12–50 characters using only lowercase alphanumeric characters, hyphens, and underscores",
+      "original_snippets": "Slug rules: 12–50 characters, lowercase alphanumeric, hyphens, and underscores only.",
+      "relevant_when": "When creating a new article or validating an existing slug",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Use `type: \"tech\"` for technical procedures, tutorials, or how-to articles; use `type: \"idea\"` for opinion, reflection, or experience-based articles",
+      "original_snippets": "type: \"tech\" # tech（技術記事）or idea（アイデア・意見）",
+      "relevant_when": "When configuring front matter for a new article",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Specify 1–5 topics in front matter; use Zenn's existing topic names in lowercase to improve discoverability",
+      "original_snippets": "topics: [\"topic1\", \"topic2\"] # 1–5 topics...topics の選び方: Zenn上の既存トピック名と一致させると検索に載りやすい",
+      "relevant_when": "When configuring topics for a new or updated article",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Set `published: false` while the article is a draft; only change it to `true` when the article is ready to go live",
+      "original_snippets": "published: false # false until ready to publish",
+      "relevant_when": "Any time front matter is being configured or an article is being prepared for publication",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Run `npx zenn preview` to preview the article locally at http://localhost:8000; the preview hot-reloads on file save",
+      "original_snippets": "npx zenn preview...Opens at http://localhost:8000. The preview hot-reloads on file save.",
+      "relevant_when": "While writing or editing article content, to catch rendering issues early",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Set `published: true` in front matter when the article is ready to be published",
+      "original_snippets": "Set `published: true` in front matter",
+      "relevant_when": "When preparing a finished draft for publication",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Use a branch + pull request workflow to publish: `git checkout -b article/<slug>`, commit, push with `-u origin article/<slug>`, then open a pull request to merge into main",
+      "original_snippets": "git checkout -b article/<slug>\\ngit add articles/<slug>.md\\ngit commit -m \"Add article: <title>\"\\ngit push -u origin article/<slug>...Open a pull request and merge into `main`.",
+      "relevant_when": "When publishing a finished article via GitHub",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Add `published_at: \"YYYY-MM-DD HH:MM\"` (JST, future datetime) to schedule publication rather than publishing immediately",
+      "original_snippets": "公開予約する場合: `published_at` を追加（JST、未来の日時）: published_at: \"2025-04-01 09:00\"",
+      "relevant_when": "When the article should go live at a specific future time rather than immediately",
+      "why_given": "new knowledge"
+    }
+  ]
+}

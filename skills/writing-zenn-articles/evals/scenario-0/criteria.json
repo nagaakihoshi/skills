@@ -1,0 +1,61 @@
+{
+  "context": "Tests the full article authoring workflow: creating an article file with correct front matter, writing structured body content, and keeping the article as a draft. Graded by inspecting the article file and notes.md.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Article file created",
+      "description": "A file exists under articles/ with a .md extension",
+      "max_score": 10
+    },
+    {
+      "name": "Slug is valid length",
+      "description": "The filename (slug) is between 12 and 50 characters",
+      "max_score": 12
+    },
+    {
+      "name": "Slug format valid",
+      "description": "The slug uses only lowercase alphanumeric characters, hyphens, and underscores",
+      "max_score": 8
+    },
+    {
+      "name": "Type is tech",
+      "description": "Front matter has type: tech (technical tutorial, not idea)",
+      "max_score": 12
+    },
+    {
+      "name": "Topics count valid",
+      "description": "Front matter topics array has between 1 and 5 items",
+      "max_score": 10
+    },
+    {
+      "name": "Published is false",
+      "description": "Front matter published field is false (draft, not yet published)",
+      "max_score": 12
+    },
+    {
+      "name": "Title is set",
+      "description": "Front matter title is a non-empty string",
+      "max_score": 8
+    },
+    {
+      "name": "Emoji is set",
+      "description": "Front matter emoji is a non-empty string containing an emoji character",
+      "max_score": 5
+    },
+    {
+      "name": "Article has body content",
+      "description": "The article body (below front matter) contains structured content with at least one heading",
+      "max_score": 15
+    },
+    {
+      "name": "notes.md created",
+      "description": "A notes.md file exists at the root of the workspace",
+      "max_score": 3
+    },
+    {
+      "name": "Notes documents choices",
+      "description": "notes.md explains the chosen slug, type, or topics with at least a brief rationale",
+      "max_score": 5
+    }
+  ]
+}

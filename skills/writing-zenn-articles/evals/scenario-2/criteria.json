@@ -1,0 +1,46 @@
+{
+  "context": "Tests whether the agent correctly prepares a finished draft for publication: setting published to true, adding published_at for scheduled release, and documenting the correct git branch workflow. Graded by inspecting the article file and notes.md.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Published set to true",
+      "description": "articles/typescript-generics-guide.md has published: true in its front matter",
+      "max_score": 22
+    },
+    {
+      "name": "Published_at set correctly",
+      "description": "Front matter includes published_at: \"2026-06-01 09:00\" (or equivalent JST datetime for June 1 2026 9 AM)",
+      "max_score": 18
+    },
+    {
+      "name": "Content preserved",
+      "description": "The rest of the front matter fields (title, emoji, type, topics) and body content are unchanged",
+      "max_score": 8
+    },
+    {
+      "name": "Branch workflow documented",
+      "description": "notes.md includes a git checkout -b (or git switch -c) command with the article/<slug> branch naming convention",
+      "max_score": 18
+    },
+    {
+      "name": "Commit documented",
+      "description": "notes.md includes a git commit command or step for the article file",
+      "max_score": 10
+    },
+    {
+      "name": "Push documented",
+      "description": "notes.md includes a git push command targeting the correct branch",
+      "max_score": 10
+    },
+    {
+      "name": "PR step mentioned",
+      "description": "notes.md mentions opening a pull request to merge the branch into main",
+      "max_score": 8
+    },
+    {
+      "name": "notes.md created",
+      "description": "A notes.md file exists at the root of the workspace",
+      "max_score": 6
+    }
+  ]
+}
